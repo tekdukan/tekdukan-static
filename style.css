@@ -15,14 +15,14 @@ body {
 }
 
 /* =========================
-   Header (Announcement + Nav + Hero)
+   Header
    ========================= */
 .site-header {
   background: linear-gradient(135deg, #0f172a, #020617);
   color: #ffffff;
 }
 
-/* Announcement bar */
+/* Announcement */
 .announcement {
   background: #020617;
   text-align: center;
@@ -31,24 +31,27 @@ body {
   opacity: 0.9;
 }
 
-/* Navigation */
+/* =========================
+   Navbar
+   ========================= */
 .navbar {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 16px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 /* Logo */
-.logo {
-  font-size: 1.2rem;
-  font-weight: 600;
+.logo img {
+  height: 40px;
 }
 
-.logo span {
-  color: #38bdf8;
+/* Show / hide logos */
+.logo-mobile {
+  display: none;
 }
 
 /* Menu */
@@ -69,7 +72,19 @@ body {
   opacity: 1;
 }
 
-/* Hero */
+/* Mobile menu button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* =========================
+   Hero
+   ========================= */
 .hero {
   max-width: 800px;
   margin: 60px auto 80px;
@@ -103,12 +118,10 @@ section {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
-/* Space between sections */
 section + section {
   margin-top: 40px;
 }
 
-/* Typography */
 section h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
@@ -119,22 +132,48 @@ p {
 }
 
 /* =========================
-   Responsive (Mobile & Tablet)
+   Mobile & Tablet
    ========================= */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    gap: 16px;
+
+  /* Switch logos */
+  .logo-desktop {
+    display: none;
   }
 
+  .logo-mobile {
+    display: block;
+    height: 36px;
+  }
+
+  /* Hamburger */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Mobile menu */
   .menu {
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #020617;
+    flex-direction: column;
+    gap: 0;
+    display: none;
   }
 
-  .hero {
-    margin: 40px auto 60px;
+  .menu li {
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .menu a {
+    padding: 16px;
+    display: block;
+  }
+
+  .menu.open {
+    display: flex;
   }
 
   .hero h1 {
