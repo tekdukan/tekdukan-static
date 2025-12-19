@@ -366,7 +366,8 @@ h1, h2, h3, h4 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  position-area: right;
+  z-index: 99;
+;
 }
 
 .card img {
