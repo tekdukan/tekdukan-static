@@ -865,6 +865,12 @@ small {
   font-weight: 600;
   margin-bottom: var(--space-xs);
   color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
 }
 
 .meta {
