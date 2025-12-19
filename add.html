@@ -3,130 +3,1032 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Add listing — Bazaar-e Ghar & Motar</title>
+  <title>Add Listing — Bazaar-e Ghar & Motar</title>
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Additional styles specific to add page */
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md);
+    }
+    
+    .page-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--space-sm);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .page-header .sub {
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Stepper */
+    .stepper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-2xl);
+      position: relative;
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: var(--bg-tertiary);
+      border: 2px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-sm);
+      transition: var(--transition-base);
+    }
+    
+    .step.active .step-circle {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+    
+    .step.completed .step-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+    
+    .step-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-tertiary);
+    }
+    
+    .step.active .step-label {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    
+    .step-connector {
+      flex: 1;
+      height: 2px;
+      background: var(--border-light);
+      margin: 0 var(--space-md);
+      max-width: 100px;
+    }
+    
+    /* Form Sections */
+    .form-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: var(--space-xl);
+      margin-bottom: var(--space-xl);
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-base);
+    }
+    
+    .form-section:hover {
+      box-shadow: var(--shadow-md);
+    }
+    
+    .form-section-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--border-light);
+    }
+    
+    .form-section-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: white;
+    }
+    
+    .form-section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    
+    .form-section-desc {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    /* Enhanced Form Styles */
+    #addForm label {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+    
+    #addForm label span {
+      font-weight: 500;
+      color: var(--text-primary);
+      font-size: 0.875rem;
+    }
+    
+    #addForm .required::after {
+      content: " *";
+      color: var(--error);
+    }
+    
+    #addForm input,
+    #addForm select,
+    #addForm textarea {
+      padding: var(--space-md);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      transition: var(--transition-fast);
+      font-family: var(--font-family);
+    }
+    
+    #addForm input:focus,
+    #addForm select:focus,
+    #addForm textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: var(--bg-surface);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    
+    #addForm input::placeholder,
+    #addForm textarea::placeholder {
+      color: var(--text-tertiary);
+    }
+    
+    /* Image Upload */
+    .image-upload {
+      border: 2px dashed var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: var(--space-2xl) var(--space-xl);
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition-base);
+      background: var(--bg-secondary);
+    }
+    
+    .image-upload:hover {
+      border-color: var(--primary);
+      background: var(--bg-tertiary);
+    }
+    
+    .image-upload-icon {
+      font-size: 3rem;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-md);
+    }
+    
+    .image-upload h4 {
+      margin-bottom: var(--space-xs);
+      color: var(--text-primary);
+    }
+    
+    .image-upload p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .image-upload-input {
+      display: none;
+    }
+    
+    .image-preview {
+      display: none;
+      position: relative;
+      margin-top: var(--space-md);
+    }
+    
+    .image-preview img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    
+    .remove-image {
+      position: absolute;
+      top: var(--space-sm);
+      right: var(--space-sm);
+      width: 32px;
+      height: 32px;
+      background: var(--error);
+      color: white;
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition-fast);
+    }
+    
+    .remove-image:hover {
+      transform: scale(1.1);
+    }
+    
+    /* Feature Toggle */
+    .feature-toggle {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    
+    .feature-toggle:hover {
+      background: var(--bg-secondary);
+    }
+    
+    .feature-toggle input {
+      display: none;
+    }
+    
+    .toggle-switch {
+      width: 52px;
+      height: 28px;
+      background: var(--border-medium);
+      border-radius: var(--radius-full);
+      position: relative;
+      transition: var(--transition-fast);
+    }
+    
+    .toggle-switch::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: var(--radius-full);
+      transition: var(--transition-fast);
+    }
+    
+    .feature-toggle input:checked + .toggle-switch {
+      background: var(--success);
+    }
+    
+    .feature-toggle input:checked + .toggle-switch::after {
+      transform: translateX(24px);
+    }
+    
+    .feature-info {
+      flex: 1;
+    }
+    
+    .feature-title {
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+    
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    
+    .feature-badge {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: white;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    
+    /* Form Actions */
+    .form-actions {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-2xl);
+      padding-top: var(--space-xl);
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .form-actions .btn {
+      flex: 1;
+      min-height: 48px;
+      font-weight: 600;
+    }
+    
+    /* Success Message */
+    .success-message {
+      display: none;
+      background: linear-gradient(135deg, var(--success) 0%, #0da271 100%);
+      color: white;
+      padding: var(--space-xl);
+      border-radius: var(--radius-xl);
+      text-align: center;
+      margin-top: var(--space-xl);
+      animation: slideUp 0.5s ease;
+    }
+    
+    .success-message.show {
+      display: block;
+    }
+    
+    .success-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-md);
+    }
+    
+    .success-message h3 {
+      color: white;
+      margin-bottom: var(--space-sm);
+    }
+    
+    .success-actions {
+      display: flex;
+      gap: var(--space-md);
+      justify-content: center;
+      margin-top: var(--space-lg);
+    }
+    
+    .success-actions .btn {
+      min-width: 160px;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page {
+        padding: var(--space-lg) var(--space-md);
+      }
+      
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      
+      .stepper {
+        flex-wrap: wrap;
+        gap: var(--space-lg);
+      }
+      
+      .step-connector {
+        display: none;
+      }
+      
+      .form-section {
+        padding: var(--space-lg);
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+      
+      .success-actions {
+        flex-direction: column;
+      }
+      
+      .success-actions .btn {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .form-section {
+        padding: var(--space-md);
+      }
+      
+      .form-section-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-sm);
+      }
+    }
+  </style>
 </head>
 <body>
+  <!-- Mobile Navigation -->
+  <nav class="mobile-bottom-nav">
+    <a href="index.html" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="homes.html" class="nav-item">
+      <i class="fas fa-house-user"></i>
+      <span>Homes</span>
+    </a>
+    <a href="cars.html" class="nav-item">
+      <i class="fas fa-car"></i>
+      <span>Cars</span>
+    </a>
+    <a href="add.html" class="nav-item add-btn active">
+      <i class="fas fa-plus"></i>
+      <span>Post</span>
+    </a>
+    <a href="account.html" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>Account</span>
+    </a>
+  </nav>
+
   <header class="site-header">
     <a class="brand" href="index.html">
       <img src="assets/img/logo.svg" alt="Bazaar-e Ghar & Motar" />
-      <span>Bazaar-e Ghar & Motar</span>
+      <div class="brand-text">
+        <strong>Bazaar-e Ghar & Motar</strong>
+        <small>Homes & Cars • Afghanistan</small>
+      </div>
     </a>
-    <nav class="main-nav">
-      <a href="homes.html">Homes</a>
-      <a href="cars.html">Cars</a>
-      <a class="cta active" href="add.html">Add listing</a>
-      <button id="langToggle" class="ghost">Dari/Pashto</button>
-      <button id="themeToggle" class="ghost">Theme</button>
-    </nav>
+
+    <div class="header-actions">
+      <nav class="main-nav">
+        <a href="homes.html">Homes</a>
+        <a href="cars.html">Cars</a>
+        <a href="add.html" class="cta">Post Listing</a>
+      </nav>
+      
+      <div class="user-area" id="headerUserArea">
+        <!-- Dynamic content from JS -->
+      </div>
+      
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
   </header>
 
   <main class="page">
-    <h1>Add your listing</h1>
-    <p class="sub">Post a home or car. Your listing saves in your browser and shows instantly.</p>
+    <!-- Page Header -->
+    <div class="page-header">
+      <h1>Add Your Listing</h1>
+      <p class="sub">Reach thousands of buyers instantly. Your listing saves locally and shows immediately.</p>
+    </div>
 
-    <form id="addForm" class="form">
-      <div class="row">
-        <label>
-          <span>Category</span>
-          <select name="category" required>
-            <option value="home">Home</option>
-            <option value="car">Car</option>
-          </select>
-        </label>
-        <label>
-          <span>City</span>
-          <select name="city" required>
-            <option>Kabul</option><option>Herat</option><option>Mazar</option><option>Kandahar</option><option>Jalalabad</option>
-          </select>
-        </label>
-        <label>
-          <span>Title</span>
-          <input type="text" name="title" placeholder="Cozy 3BR in Karte Se" required />
-        </label>
+    <!-- Progress Stepper -->
+    <div class="stepper">
+      <div class="step active">
+        <div class="step-circle">1</div>
+        <div class="step-label">Details</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <div class="step-label">Specifications</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-label">Contact & Publish</div>
+      </div>
+    </div>
+
+    <!-- Main Form -->
+    <form id="addForm" class="form-section">
+      <!-- Step 1: Basic Details -->
+      <div class="form-section-header">
+        <div class="form-section-icon">
+          <i class="fas fa-info-circle"></i>
+        </div>
+        <div>
+          <h2 class="form-section-title">Basic Information</h2>
+          <p class="form-section-desc">Start by telling us what you're listing</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: var(--space-lg);">
         <label class="grow">
-          <span>Description</span>
-          <textarea name="description" rows="4" placeholder="Key features, condition, neighborhood..." required></textarea>
-        </label>
-      </div>
-
-      <div class="row">
-        <label>
-          <span>Price (USD/Af)</span>
-          <input type="number" name="price" min="0" required />
-        </label>
-        <label>
-          <span>Contact phone</span>
-          <input type="tel" name="phone" placeholder="+93…" required />
-        </label>
-        <label class="grow">
-          <span>WhatsApp (optional)</span>
-          <input type="tel" name="whatsapp" placeholder="+93…" />
+          <span class="required">Category</span>
+          <select name="category" required id="categorySelect">
+            <option value="" disabled selected>Select category</option>
+            <option value="home">🏠 Home / Property</option>
+            <option value="car">🚗 Car / Vehicle</option>
+          </select>
         </label>
       </div>
 
       <div class="row">
         <label class="grow">
-          <span>Image URL</span>
-          <input type="url" name="image" placeholder="https://…" />
-        </label>
-        <label>
-          <span>Featured</span>
-          <select name="featured">
-            <option value="false">No</option>
-            <option value="true">Yes</option>
-          </select>
+          <span class="required">Title</span>
+          <input type="text" name="title" placeholder="e.g., Cozy 3BR Apartment in Karte Se" required />
         </label>
       </div>
 
-      <div class="row" id="homeFields">
-        <label>
-          <span>Property type</span>
-          <select name="propertyType">
-            <option>Apartment</option><option>House</option><option>Land</option>
-          </select>
-        </label>
-        <label>
-          <span>Bedrooms</span>
-          <input type="number" name="bedrooms" min="0" />
-        </label>
-        <label>
-          <span>Bathrooms</span>
-          <input type="number" name="bathrooms" min="0" />
+      <div class="row">
+        <label class="grow">
+          <span class="required">Description</span>
+          <textarea name="description" rows="4" placeholder="Describe key features, condition, neighborhood, amenities..." required></textarea>
+          <small style="color: var(--text-tertiary); margin-top: 4px;">Minimum 50 characters recommended</small>
         </label>
       </div>
 
-      <div class="row" id="carFields" style="display:none">
-        <label>
-          <span>Make</span>
-          <input type="text" name="make" placeholder="Toyota" />
-        </label>
-        <label>
-          <span>Model</span>
-          <input type="text" name="model" placeholder="Corolla" />
-        </label>
-        <label>
-          <span>Year</span>
-          <input type="number" name="year" min="1970" max="2026" />
-        </label>
+      <!-- Step 2: Specifications (Dynamic based on category) -->
+      <div class="form-section" id="specsSection" style="margin-top: var(--space-xl);">
+        <div class="form-section-header">
+          <div class="form-section-icon">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div>
+            <h2 class="form-section-title">Specifications</h2>
+            <p class="form-section-desc" id="specsDesc">Select category above to see specifications</p>
+          </div>
+        </div>
+
+        <!-- Home Specifications -->
+        <div id="homeFields" style="display: none;">
+          <div class="row">
+            <label>
+              <span class="required">City</span>
+              <select name="city" required>
+                <option value="" disabled selected>Select city</option>
+                <option value="Kabul">Kabul</option>
+                <option value="Herat">Herat</option>
+                <option value="Mazar">Mazar-e-Sharif</option>
+                <option value="Kandahar">Kandahar</option>
+                <option value="Jalalabad">Jalalabad</option>
+                <option value="Khost">Khost</option>
+                <option value="Balkh">Balkh</option>
+              </select>
+            </label>
+            <label>
+              <span class="required">Property Type</span>
+              <select name="propertyType" required>
+                <option value="" disabled selected>Select type</option>
+                <option value="Apartment">Apartment</option>
+                <option value="House">House</option>
+                <option value="Villa">Villa</option>
+                <option value="Land">Land</option>
+                <option value="Commercial">Commercial</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span>Bedrooms</span>
+              <input type="number" name="bedrooms" min="0" max="20" placeholder="0" />
+            </label>
+            <label>
+              <span>Bathrooms</span>
+              <input type="number" name="bathrooms" min="0" max="20" placeholder="0" />
+            </label>
+            <label>
+              <span>Area (sqm)</span>
+              <input type="number" name="area" min="0" placeholder="e.g., 120" />
+            </label>
+          </div>
+        </div>
+
+        <!-- Car Specifications -->
+        <div id="carFields" style="display: none;">
+          <div class="row">
+            <label>
+              <span class="required">City</span>
+              <select name="city" required>
+                <option value="" disabled selected>Select city</option>
+                <option value="Kabul">Kabul</option>
+                <option value="Herat">Herat</option>
+                <option value="Mazar">Mazar-e-Sharif</option>
+                <option value="Kandahar">Kandahar</option>
+                <option value="Jalalabad">Jalalabad</option>
+                <option value="Khost">Khost</option>
+                <option value="Balkh">Balkh</option>
+              </select>
+            </label>
+            <label>
+              <span class="required">Make</span>
+              <input type="text" name="make" placeholder="e.g., Toyota" required />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span class="required">Model</span>
+              <input type="text" name="model" placeholder="e.g., Corolla" required />
+            </label>
+            <label>
+              <span class="required">Year</span>
+              <input type="number" name="year" min="1970" max="2026" placeholder="e.g., 2020" required />
+            </label>
+            <label>
+              <span>Mileage (km)</span>
+              <input type="number" name="mileage" min="0" placeholder="e.g., 50000" />
+            </label>
+          </div>
+
+          <div class="row">
+            <label>
+              <span>Fuel Type</span>
+              <select name="fuelType">
+                <option value="">Select fuel type</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Electric">Electric</option>
+                <option value="Hybrid">Hybrid</option>
+              </select>
+            </label>
+            <label>
+              <span>Transmission</span>
+              <select name="transmission">
+                <option value="">Select transmission</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+              </select>
+            </label>
+          </div>
+        </div>
       </div>
 
-      <div class="actions">
-        <button class="btn accent" type="submit">Post listing</button>
-        <a class="btn outline" href="index.html">Cancel</a>
+      <!-- Step 3: Pricing & Contact -->
+      <div class="form-section" style="margin-top: var(--space-xl);">
+        <div class="form-section-header">
+          <div class="form-section-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <div>
+            <h2 class="form-section-title">Pricing & Contact</h2>
+            <p class="form-section-desc">Set your price and contact information</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <label class="grow">
+            <span class="required">Price</span>
+            <div style="position: relative;">
+              <input type="number" name="price" min="0" placeholder="e.g., 50000" required style="padding-left: 60px;" />
+              <div style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-tertiary);">
+                USD/Af
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="grow">
+            <span class="required">Contact Phone</span>
+            <input type="tel" name="phone" placeholder="+93 70 123 4567" required pattern="[\+]\d{1,3}[ ]?\d{1,14}" />
+            <small style="color: var(--text-tertiary); margin-top: 4px;">Format: +93 70 123 4567</small>
+          </label>
+        </div>
+
+        <div class="row">
+          <label class="grow">
+            <span>WhatsApp Number (Optional)</span>
+            <input type="tel" name="whatsapp" placeholder="+93 70 123 4567" pattern="[\+]\d{1,3}[ ]?\d{1,14}" />
+            <small style="color: var(--text-tertiary); margin-top: 4px;">Buyers can contact you directly via WhatsApp</small>
+          </label>
+        </div>
+
+        <!-- Image Upload -->
+        <div class="image-upload" id="imageUploadArea">
+          <div class="image-upload-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+          </div>
+          <h4>Upload Images</h4>
+          <p>Drag & drop images or click to browse (Max 5MB per image)</p>
+          <button type="button" class="btn ghost" onclick="document.getElementById('imageInput').click()">
+            <i class="fas fa-camera"></i> Choose Images
+          </button>
+          <input type="file" id="imageInput" class="image-upload-input" accept="image/*" multiple>
+        </div>
+
+        <div class="image-preview" id="imagePreview">
+          <img id="previewImage" src="" alt="Preview">
+          <button type="button" class="remove-image" onclick="removeImage()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- Featured Listing Toggle -->
+        <div class="feature-toggle" style="margin-top: var(--space-xl);">
+          <div class="feature-info">
+            <div class="feature-title">Feature This Listing</div>
+            <div class="feature-desc">Get more visibility by featuring your listing at the top of search results</div>
+          </div>
+          <div class="feature-badge">Premium</div>
+          <label style="display: flex; align-items: center;">
+            <input type="checkbox" name="featured" value="true" />
+            <span class="toggle-switch"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <a href="index.html" class="btn ghost">
+          <i class="fas fa-times"></i> Cancel
+        </a>
+        <button class="btn primary" type="submit">
+          <i class="fas fa-paper-plane"></i> Publish Listing
+        </button>
       </div>
     </form>
-    <div id="addSuccess" class="notice success" style="display:none">Listing added! View it on the relevant page.</div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Listing Published Successfully!</h3>
+      <p>Your listing is now live and visible to thousands of potential buyers.</p>
+      <div class="success-actions">
+        <a href="homes.html" class="btn" style="background: white; color: var(--success);">
+          <i class="fas fa-eye"></i> View Listings
+        </a>
+        <a href="add.html" class="btn ghost" style="border-color: white; color: white;">
+          <i class="fas fa-plus"></i> Add Another
+        </a>
+      </div>
+    </div>
   </main>
 
   <footer class="site-footer">
-    <p class="meta">© 2025 Bazaar-e Ghar & Motar</p>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <small>© <span id="year"></span> Bazaar-e Ghar & Motar</small>
+      </div>
+      <div class="footer-right">
+        <small>Need help? Call <a href="tel:+93700000000">+93 700 000 000</a></small>
+      </div>
+    </div>
   </footer>
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  
   <script>
-    window.renderAddPage();
+    // DOM Ready
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set current year
+      document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // Initialize form
+      if (window.renderAddPage) {
+        window.renderAddPage();
+      }
+      
+      // Category toggle with enhanced UI
+      const categorySelect = document.getElementById('categorySelect');
+      const homeFields = document.getElementById('homeFields');
+      const carFields = document.getElementById('carFields');
+      const specsDesc = document.getElementById('specsDesc');
+      const steps = document.querySelectorAll('.step');
+      
+      function updateCategoryUI() {
+        const category = categorySelect.value;
+        
+        // Reset all fields
+        homeFields.style.display = 'none';
+        carFields.style.display = 'none';
+        
+        // Update steps
+        steps.forEach(step => step.classList.remove('active', 'completed'));
+        steps[0].classList.add('active');
+        
+        if (category === 'home') {
+          homeFields.style.display = 'block';
+          steps[1].classList.add('active');
+          steps[0].classList.add('completed');
+          specsDesc.textContent = 'Tell us about your property';
+        } else if (category === 'car') {
+          carFields.style.display = 'block';
+          steps[1].classList.add('active');
+          steps[0].classList.add('completed');
+          specsDesc.textContent = 'Tell us about your vehicle';
+        } else {
+          specsDesc.textContent = 'Select category above to see specifications';
+        }
+      }
+      
+      if (categorySelect) {
+        categorySelect.addEventListener('change', updateCategoryUI);
+        
+        // Auto-select if there's a URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const typeParam = urlParams.get('type');
+        if (typeParam === 'home' || typeParam === 'car') {
+          categorySelect.value = typeParam;
+          updateCategoryUI();
+        }
+      }
+      
+      // Image upload preview
+      const imageInput = document.getElementById('imageInput');
+      const imagePreview = document.getElementById('imagePreview');
+      const previewImage = document.getElementById('previewImage');
+      const imageUploadArea = document.getElementById('imageUploadArea');
+      
+      if (imageInput) {
+        imageInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+              alert('Image size should be less than 5MB');
+              return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+              previewImage.src = event.target.result;
+              imagePreview.style.display = 'block';
+              imageUploadArea.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+      }
+      
+      // Drag and drop for images
+      if (imageUploadArea) {
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+          imageUploadArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+          imageUploadArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+          imageUploadArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+          imageUploadArea.style.borderColor = 'var(--primary)';
+          imageUploadArea.style.backgroundColor = 'var(--bg-tertiary)';
+        }
+        
+        function unhighlight() {
+          imageUploadArea.style.borderColor = 'var(--border-light)';
+          imageUploadArea.style.backgroundColor = 'var(--bg-secondary)';
+        }
+        
+        imageUploadArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+          const dt = e.dataTransfer;
+          const files = dt.files;
+          
+          if (files.length > 0) {
+            imageInput.files = files;
+            imageInput.dispatchEvent(new Event('change'));
+          }
+        }
+      }
+      
+      // Phone number formatting
+      const phoneInputs = document.querySelectorAll('input[type="tel"]');
+      phoneInputs.forEach(input => {
+        input.addEventListener('input', function(e) {
+          let value = e.target.value.replace(/\D/g, '');
+          if (value.startsWith('93')) {
+            value = '+93 ' + value.substring(2);
+          } else if (value.startsWith('0')) {
+            value = '+93 ' + value.substring(1);
+          }
+          e.target.value = value;
+        });
+      });
+      
+      // Price formatting
+      const priceInput = document.querySelector('input[name="price"]');
+      if (priceInput) {
+        priceInput.addEventListener('input', function(e) {
+          let value = e.target.value.replace(/[^\d]/g, '');
+          if (value) {
+            value = parseInt(value).toLocaleString();
+          }
+          e.target.value = value;
+        });
+      }
+      
+      // Form submission enhancement
+      const addForm = document.getElementById('addForm');
+      const successMessage = document.getElementById('successMessage');
+      
+      if (addForm) {
+        addForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Validate form
+          if (!validateForm()) {
+            return;
+          }
+          
+          // Show loading state
+          const submitBtn = addForm.querySelector('button[type="submit"]');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+          submitBtn.disabled = true;
+          
+          // Simulate API call
+          setTimeout(() => {
+            // Hide form and show success message
+            addForm.style.display = 'none';
+            successMessage.classList.add('show');
+            
+            // Update steps to show completion
+            steps.forEach(step => step.classList.remove('active'));
+            steps[2].classList.add('completed', 'active');
+            
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+          }, 1500);
+        });
+      }
+      
+      function validateForm() {
+        const category = categorySelect.value;
+        if (!category) {
+          alert('Please select a category');
+          categorySelect.focus();
+          return false;
+        }
+        
+        const requiredFields = addForm.querySelectorAll('[required]');
+        for (let field of requiredFields) {
+          if (!field.value.trim()) {
+            alert(`Please fill in the required field: ${field.previousElementSibling?.textContent || field.name}`);
+            field.focus();
+            return false;
+          }
+        }
+        
+        return true;
+      }
+      
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+          const html = document.documentElement;
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+          
+          const icon = themeToggle.querySelector('i');
+          icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+        });
+      }
+      
+      // Initialize user area
+      if (window.renderHeaderUser) {
+        window.renderHeaderUser();
+      }
+    });
+    
+    function removeImage() {
+      document.getElementById('imagePreview').style.display = 'none';
+      document.getElementById('imageUploadArea').style.display = 'block';
+      document.getElementById('imageInput').value = '';
+    }
   </script>
 </body>
 </html>
