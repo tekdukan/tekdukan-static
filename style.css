@@ -1,3 +1,6 @@
+/* =========================
+   Reset & Base
+   ========================= */
 * {
   margin: 0;
   padding: 0;
@@ -5,14 +8,15 @@
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Page basics */
 body {
   background: #f4f6f8;
   color: #1f2933;
   line-height: 1.7;
 }
 
-/* Header wrapper */
+/* =========================
+   Header (Announcement + Nav + Hero)
+   ========================= */
 .site-header {
   background: linear-gradient(135deg, #0f172a, #020617);
   color: #ffffff;
@@ -27,7 +31,7 @@ body {
   opacity: 0.9;
 }
 
-/* Navbar */
+/* Navigation */
 .navbar {
   max-width: 1100px;
   margin: 0 auto;
@@ -65,7 +69,7 @@ body {
   opacity: 1;
 }
 
-/* Hero section */
+/* Hero */
 .hero {
   max-width: 800px;
   margin: 60px auto 80px;
@@ -83,15 +87,15 @@ body {
   opacity: 0.85;
 }
 
-
-/* Main layout */
+/* =========================
+   Main Content
+   ========================= */
 main {
   max-width: 900px;
   margin: 60px auto;
   padding: 0 20px;
 }
 
-/* Content sections */
 section {
   background: #ffffff;
   padding: 30px;
@@ -104,21 +108,37 @@ section + section {
   margin-top: 40px;
 }
 
-/* Headings */
+/* Typography */
 section h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-/* Paragraph readability */
 p {
   max-width: 65ch;
 }
 
-/* Mobile adjustments */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 1.9rem;
+/* =========================
+   Responsive (Mobile & Tablet)
+   ========================= */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .menu {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero {
+    margin: 40px auto 60px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
   }
 
   main {
