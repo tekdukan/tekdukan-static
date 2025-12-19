@@ -2,60 +2,623 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bazaar-e Ghar & Motar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>Bazaar-e Ghar & Motar - Homes & Cars Marketplace in Afghanistan</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <meta name="description" content="Buy & sell homes and cars in Afghanistan" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="description" content="Afghanistan's premier marketplace for buying and selling homes, apartments, and vehicles. Local listings with secure contacts." />
+  <meta name="theme-color" content="#071021">
+  
+  <!-- iOS Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bazaar-e Ghar & Motar">
+  
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  
+  <!-- Preload critical assets -->
+  <link rel="preload" href="assets/css/style.css" as="style">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
+  <!-- Mobile Navigation Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+  
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="index.html" class="nav-item active">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="homes.html" class="nav-item">
+      <i class="fas fa-house-user"></i>
+      <span>Homes</span>
+    </a>
+    <a href="cars.html" class="nav-item">
+      <i class="fas fa-car"></i>
+      <span>Cars</span>
+    </a>
+    <a href="add.html" class="nav-item add-btn">
+      <i class="fas fa-plus"></i>
+      <span>Post</span>
+    </a>
+    <a href="account.html" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span>Account</span>
+    </a>
+  </nav>
+
   <header class="site-header">
+    <!-- Mobile Hamburger Menu -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
     <a class="brand" href="index.html">
-      <img src="assets/img/logo.svg" alt="Bazaar-e Ghar & Motar" />
+      <img src="assets/img/logo.svg" alt="Bazaar-e Ghar & Motar" loading="lazy" />
       <div class="brand-text">
         <strong>Bazaar-e Ghar & Motar</strong>
         <small>Homes & Cars • Afghanistan</small>
       </div>
     </a>
 
+    <!-- Desktop Navigation -->
     <div class="header-actions">
-      <nav class="main-nav">
-        <a href="homes.html">Homes</a>
-        <a href="cars.html">Cars</a>
-        <a href="add.html" class="cta">Add</a>
+      <nav class="main-nav" id="mainNav">
+        <a href="homes.html">
+          <i class="fas fa-home"></i>
+          <span>Homes</span>
+        </a>
+        <a href="cars.html">
+          <i class="fas fa-car"></i>
+          <span>Cars</span>
+        </a>
+        <a href="add.html" class="cta">
+          <i class="fas fa-plus"></i>
+          <span>Post Listing</span>
+        </a>
+        <a href="saved.html" class="saved-btn">
+          <i class="fas fa-heart"></i>
+          <span class="badge">0</span>
+        </a>
       </nav>
-      <div class="user-area" id="headerUserArea"></div>
-      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌓</button>
+      
+      <!-- User Area & Search -->
+      <div class="header-search-user">
+        <button class="mobile-search-btn" id="mobileSearchBtn" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <div class="search-container" id="searchContainer">
+          <i class="fas fa-search search-icon"></i>
+          <input 
+            type="search" 
+            id="globalSearch" 
+            placeholder="Search homes, cars, locations..." 
+            aria-label="Search listings"
+            autocomplete="off"
+          />
+          <button class="clear-search" id="clearSearch" aria-label="Clear search">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="user-area" id="headerUserArea">
+          <!-- Dynamic content from JS -->
+        </div>
+        
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun" style="display: none;"></i>
+        </button>
+      </div>
     </div>
   </header>
 
+  <!-- Mobile Quick Actions -->
+  <div class="mobile-quick-actions">
+    <button class="quick-action call-action" onclick="window.location.href='tel:+93700000000'">
+      <i class="fas fa-phone-alt"></i>
+      <span>Call Support</span>
+    </button>
+    <button class="quick-action whatsapp-action" onclick="window.open('https://wa.me/93700000000', '_blank')">
+      <i class="fab fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </button>
+  </div>
+
   <main class="hero">
     <div class="hero-inner">
+      <!-- App Store Badges -->
+      <div class="app-badges">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
+             alt="Download on App Store" 
+             style="height: 40px; margin-right: 8px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
+             alt="Get it on Google Play" 
+             style="height: 40px;">
+      </div>
+      
       <h1>Find your next home or car in Afghanistan</h1>
       <p class="lead">Local listings, secure contacts, mobile-first experience for buyers and sellers.</p>
-      <div class="hero-cta">
-        <a class="btn primary" href="homes.html">Browse homes</a>
-        <a class="btn ghost" href="cars.html">Browse cars</a>
-        <a class="btn accent" href="add.html">Post listing</a>
+      
+      <!-- Quick Search Bar -->
+      <div class="quick-search">
+        <div class="search-tabs">
+          <button class="search-tab active" data-type="homes">
+            <i class="fas fa-home"></i> Homes
+          </button>
+          <button class="search-tab" data-type="cars">
+            <i class="fas fa-car"></i> Cars
+          </button>
+        </div>
+        <div class="search-input-group">
+          <input type="text" placeholder="Search by city, price, or keyword..." id="quickSearchInput">
+          <button class="btn primary" id="quickSearchBtn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Stats Counter -->
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-number" data-count="1250">0</span>
+          <span class="stat-label">Active Listings</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="89">0</span>
+          <span class="stat-label">Cities</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="24">0</span>
+          <span class="stat-label">Hours Support</span>
+        </div>
       </div>
     </div>
   </main>
 
+  <!-- Featured Section -->
   <section class="featured">
-    <h2>Featured right now</h2>
-    <div id="featuredGrid" class="grid"></div>
+    <div class="section-header">
+      <h2>
+        <i class="fas fa-star featured-icon"></i>
+        Featured Right Now
+      </h2>
+      <a href="all-listings.html" class="view-all">
+        View All
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+    
+    <div class="swiper-container" id="featuredSwiper">
+      <div class="swiper-wrapper" id="featuredGrid">
+        <!-- Dynamic content from JS -->
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Navigation -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
   </section>
 
+  <!-- Categories -->
+  <section class="categories">
+    <h2>Browse by Category</h2>
+    <div class="category-grid">
+      <a href="homes.html?type=apartment" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-building"></i>
+        </div>
+        <h3>Apartments</h3>
+        <p>150+ listings</p>
+      </a>
+      <a href="homes.html?type=house" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-home"></i>
+        </div>
+        <h3>Houses</h3>
+        <p>85+ listings</p>
+      </a>
+      <a href="cars.html?type=sedan" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-car-side"></i>
+        </div>
+        <h3>Sedans</h3>
+        <p>200+ listings</p>
+      </a>
+      <a href="cars.html?type=suv" class="category-card">
+        <div class="category-icon">
+          <i class="fas fa-truck"></i>
+        </div>
+        <h3>SUVs</h3>
+        <p>120+ listings</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <h3>Browse</h3>
+        <p>Search thousands of listings in your city</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-icon">
+          <i class="fas fa-comments"></i>
+        </div>
+        <h3>Contact</h3>
+        <p>Message sellers directly via phone or WhatsApp</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <h3>Deal</h3>
+        <p>Secure your purchase with our support team</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <h2>What Our Users Say</h2>
+    <div class="testimonial-slider">
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"Found my dream apartment in Kabul within 2 days! Excellent service."</p>
+        </div>
+        <div class="testimonial-author">
+          <strong>Ahmad S.</strong>
+          <span>Kabul</span>
+        </div>
+      </div>
+      <div class="testimonial">
+        <div class="testimonial-content">
+          <p>"Sold my car quickly through this platform. Very user-friendly on mobile."</p>
+        </div>
+        <div class="testimonial-author">
+          <strong>Zahra M.</strong>
+          <span>Herat</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="cta-content">
+      <h2>Ready to List Your Property or Vehicle?</h2>
+      <p>Join thousands of successful sellers on Afghanistan's fastest-growing marketplace.</p>
+      <div class="cta-buttons">
+        <a href="add.html?type=home" class="btn primary large">
+          <i class="fas fa-home"></i>
+          Post a Home
+        </a>
+        <a href="add.html?type=car" class="btn ghost large">
+          <i class="fas fa-car"></i>
+          Post a Car
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="site-footer">
-    <div class="footer-left">
-      <small>© <span id="year"></span> Bazaar-e Ghar & Motar</small>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Bazaar-e Ghar & Motar</h3>
+        <p>Afghanistan's trusted marketplace for homes and vehicles since 2024.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <a href="homes.html">Browse Homes</a>
+        <a href="cars.html">Browse Cars</a>
+        <a href="add.html">Post Listing</a>
+        <a href="help.html">Help Center</a>
+      </div>
+      <div class="footer-col">
+        <h3>Support</h3>
+        <a href="tel:+93700000000">
+          <i class="fas fa-phone"></i> +93 700 000 000
+        </a>
+        <a href="mailto:support@bazaar-af.com">
+          <i class="fas fa-envelope"></i> support@bazaar-af.com
+        </a>
+        <a href="https://wa.me/93700000000" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp Support
+        </a>
+      </div>
     </div>
-    <div class="footer-right">
-      <small>Built for Afghanistan • Mobile-first</small>
+    
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <small>© <span id="year"></span> Bazaar-e Ghar & Motar. All rights reserved.</small>
+      </div>
+      <div class="footer-right">
+        <small>Built for Afghanistan • Mobile-first • PWA Ready</small>
+      </div>
     </div>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
   </footer>
 
+  <!-- Loading Spinner -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
-  <script>window.initIndex && window.initIndex();</script>
+  <!-- Swiper JS for carousels -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  
+  <script>
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize index page
+      if (window.initIndex) {
+        window.initIndex();
+      }
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mainNav = document.getElementById('mainNav');
+      const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+      
+      if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+          mainNav.classList.toggle('mobile-visible');
+          mobileNavOverlay.classList.toggle('active');
+          document.body.classList.toggle('no-scroll');
+        });
+        
+        mobileNavOverlay.addEventListener('click', function() {
+          mainNav.classList.remove('mobile-visible');
+          mobileNavOverlay.classList.remove('active');
+          document.body.classList.remove('no-scroll');
+        });
+      }
+      
+      // Mobile search toggle
+      const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+      const searchContainer = document.getElementById('searchContainer');
+      
+      if (mobileSearchBtn && searchContainer) {
+        mobileSearchBtn.addEventListener('click', function() {
+          searchContainer.classList.toggle('mobile-visible');
+          if (searchContainer.classList.contains('mobile-visible')) {
+            document.getElementById('globalSearch').focus();
+          }
+        });
+      }
+      
+      // Clear search button
+      const clearSearchBtn = document.getElementById('clearSearch');
+      const globalSearchInput = document.getElementById('globalSearch');
+      
+      if (clearSearchBtn && globalSearchInput) {
+        clearSearchBtn.addEventListener('click', function() {
+          globalSearchInput.value = '';
+          globalSearchInput.focus();
+        });
+        
+        globalSearchInput.addEventListener('input', function() {
+          clearSearchBtn.style.display = this.value ? 'flex' : 'none';
+        });
+      }
+      
+      // Quick search functionality
+      const quickSearchInput = document.getElementById('quickSearchInput');
+      const quickSearchBtn = document.getElementById('quickSearchBtn');
+      const searchTabs = document.querySelectorAll('.search-tab');
+      
+      searchTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          searchTabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+      
+      if (quickSearchBtn && quickSearchInput) {
+        quickSearchBtn.addEventListener('click', function() {
+          const activeTab = document.querySelector('.search-tab.active');
+          const type = activeTab.dataset.type;
+          const query = quickSearchInput.value.trim();
+          
+          if (query) {
+            window.location.href = `${type}.html?q=${encodeURIComponent(query)}`;
+          } else {
+            window.location.href = `${type}.html`;
+          }
+        });
+        
+        quickSearchInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            quickSearchBtn.click();
+          }
+        });
+      }
+      
+      // Theme toggle
+      const themeToggle = document.getElementById('themeToggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+          const html = document.documentElement;
+          const isDark = html.getAttribute('data-theme') === 'dark';
+          html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+          
+          // Update icons
+          const moonIcon = themeToggle.querySelector('.fa-moon');
+          const sunIcon = themeToggle.querySelector('.fa-sun');
+          
+          if (isDark) {
+            moonIcon.style.display = 'none';
+            sunIcon.style.display = 'inline-block';
+          } else {
+            moonIcon.style.display = 'inline-block';
+            sunIcon.style.display = 'none';
+          }
+        });
+      }
+      
+      // Back to top button
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
+        window.addEventListener('scroll', function() {
+          if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+          } else {
+            backToTopBtn.classList.remove('visible');
+          }
+        });
+        
+        backToTopBtn.addEventListener('click', function() {
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+        });
+      }
+      
+      // Animate stats counter
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-count'));
+        let current = 0;
+        const increment = target / 50;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          stat.textContent = Math.round(current).toLocaleString();
+        }, 30);
+      });
+      
+      // Initialize Swiper for featured listings
+      if (typeof Swiper !== 'undefined') {
+        const featuredSwiper = new Swiper('#featuredSwiper', {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            }
+          }
+        });
+      }
+      
+      // Hide page loader
+      const pageLoader = document.getElementById('pageLoader');
+      if (pageLoader) {
+        setTimeout(() => {
+          pageLoader.style.opacity = '0';
+          setTimeout(() => {
+            pageLoader.style.display = 'none';
+          }, 300);
+        }, 500);
+      }
+      
+      // Touch gestures for mobile
+      let startX, startY;
+      document.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+      });
+      
+      document.addEventListener('touchmove', function(e) {
+        if (!startX || !startY) return;
+        
+        const diffX = startX - e.touches[0].clientX;
+        const diffY = startY - e.touches[0].clientY;
+        
+        // Horizontal swipe (for closing modals/menus)
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+          if (diffX > 0) {
+            // Swipe left - close right side menus
+            if (mainNav && mainNav.classList.contains('mobile-visible')) {
+              mainNav.classList.remove('mobile-visible');
+              mobileNavOverlay.classList.remove('active');
+              document.body.classList.remove('no-scroll');
+            }
+          }
+        }
+        
+        startX = null;
+        startY = null;
+      });
+    });
+    
+    // Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+    
+    // Add to Home Screen prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      
+      // Show install button
+      const installBtn = document.createElement('button');
+      installBtn.className = 'install-btn';
+      installBtn.innerHTML = '<i class="fas fa-download"></i> Install App';
+      installBtn.addEventListener('click', () => {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted install');
+          }
+          deferredPrompt = null;
+        });
+      });
+      
+      document.querySelector('.hero-inner').appendChild(installBtn);
+    });
+  </script>
 </body>
 </html>
