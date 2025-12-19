@@ -12,23 +12,77 @@ body {
   line-height: 1.7;
 }
 
-/* Header */
-header {
-  padding: 60px 20px;
-  text-align: center;
-  background: #0f172a;
+/* Header wrapper */
+.site-header {
+  background: linear-gradient(135deg, #0f172a, #020617);
   color: #ffffff;
 }
 
-header h1 {
-  font-size: 2.4rem;
-  margin-bottom: 10px;
+/* Announcement bar */
+.announcement {
+  background: #020617;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  opacity: 0.9;
 }
 
-header p {
+/* Navbar */
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.logo span {
+  color: #38bdf8;
+}
+
+/* Menu */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.menu a:hover {
+  opacity: 1;
+}
+
+/* Hero section */
+.hero {
+  max-width: 800px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+}
+
+.hero p {
   font-size: 1.1rem;
   opacity: 0.85;
 }
+
 
 /* Main layout */
 main {
