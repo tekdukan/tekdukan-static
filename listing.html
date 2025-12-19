@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Listing — Bazaar-e Ghar & Motar</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo.svg" alt="Bazaar-e Ghar & Motar" />
+      <span>Bazaar-e Ghar & Motar</span>
+    </a>
+    <nav class="main-nav">
+      <a href="homes.html">Homes</a>
+      <a href="cars.html">Cars</a>
+      <a class="cta" href="add.html">Add listing</a>
+      <button id="langToggle" class="ghost">Dari/Pashto</button>
+      <button id="themeToggle" class="ghost">Theme</button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div id="listingDetail" class="detail"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="meta">© 2025 Bazaar-e Ghar & Motar</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    window.renderListingPage();
+  </script>
+</body>
+</html>
