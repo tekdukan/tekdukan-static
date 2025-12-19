@@ -1,102 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Afghan Project</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- ================= HEADER ================= -->
   <header class="site-header">
 
-  <!-- Announcement bar -->
-  <div class="announcement">
-    Built for speed and accessibility in low-bandwidth regions.
-  </div>
+    <!-- Announcement -->
+    <div class="announcement">
+      Built for speed and accessibility in low-bandwidth regions.
+    </div>
 
-  <!-- Navigation -->
-  <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar">
 
-  <div class="logo">
-    <img
-      src="https://upload.wikimedia.org/wikipedia/tr/archive/5/51/20121213095814%21Sahibinden-2010-200px.jpg"
-      alt="Desktop Logo"
-      class="logo-desktop"
-    />
+      <!-- Logo -->
+      <div class="logo">
+        <!-- Desktop logo -->
+        <img
+          src="https://upload.wikimedia.org/wikipedia/tr/archive/5/51/20121213095814%21Sahibinden-2010-200px.jpg"
+          alt="Desktop Logo"
+          class="logo-desktop"
+        />
 
-    <img
-      src="https://scontent.fsaw1-15.fna.fbcdn.net/v/t39.30808-6/359775794_655160279985677_717071514343656728_n.jpg"
-      alt="Mobile Logo"
-      class="logo-mobile"
-    />
-  </div>
+        <!-- Mobile & Tablet logo -->
+        <img
+          src="https://scontent.fsaw1-15.fna.fbcdn.net/v/t39.30808-6/359775794_655160279985677_717071514343656728_n.jpg"
+          alt="Mobile Logo"
+          class="logo-mobile"
+        />
+      </div>
 
-  <button class="menu-toggle" aria-label="Toggle menu">
-    ☰
-  </button>
+      <!-- Hamburger button (mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu">
+        ☰
+      </button>
 
-  <ul class="menu">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Mission</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
+      <!-- Menu -->
+      <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Mission</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
 
-</nav>
+    </nav>
 
-  <!-- Logo -->
-  <div class="logo">
-    <img src="https://upload.wikimedia.org/wikipedia/tr/archive/5/51/20121213095814%21Sahibinden-2010-200px.jpg"
-         alt="Logo"
-         class="logo-desktop">
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Built for Afghanistan</h1>
+      <p>
+        Fast. Simple. Accessible. Designed for real-world connectivity.
+      </p>
+    </div>
 
-    <img src="https://scontent.fsaw1-15.fna.fbcdn.net/v/t39.30808-6/359775794_655160279985677_717071514343656728_n.jpg"
-         alt="Logo"
-         class="logo-mobile">
-  </div>
+  </header>
 
-  <!-- Mobile menu button -->
-  <button class="menu-toggle" aria-label="Open menu">
-    ☰
-  </button>
-
-  <!-- Menu -->
-  <ul class="menu">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Mission</a></li>
-    <li><a href="#">Contact</a></li>
-  </ul>
-
-</nav>
-
-
-  <!-- Hero -->
-  <div class="hero">
-    <h1>Built for Afghanistan</h1>
-    <p>Fast. Simple. Accessible. Designed for real-world connectivity.</p>
-  </div>
-
-</header>
-
-
+  <!-- ================= MAIN ================= -->
   <main>
+
     <section>
       <h2>Why this site?</h2>
-      <p>This project is built to be fast even on slow internet.</p>
-    </section>
-
-    <section style="margin-top:40px;">
-      <h2>Design philosophy</h2>
       <p>
-        The layout is minimal, lightweight, and readable on low-bandwidth
-        connections. This matters in regions where speed and accessibility
-        are not luxuries, but necessities.
+        This project is built to be fast even on slow internet connections,
+        prioritizing accessibility and clarity over heavy design.
       </p>
     </section>
+
+    <section>
+      <h2>Design philosophy</h2>
+      <p>
+        Minimal layout, system fonts, and lightweight assets ensure the site
+        remains usable across devices, regions, and network conditions.
+      </p>
+    </section>
+
   </main>
 
+  <!-- JavaScript -->
   <script src="script.js"></script>
+
 </body>
 </html>
