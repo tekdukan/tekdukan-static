@@ -1,91 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Afghan Project</title>
+/* =========================
+   RESET & BASE
+   ========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+body {
+  background: #f4f6f8;
+  color: #1f2933;
+  line-height: 1.7;
+}
 
-  <!-- ================= HEADER ================= -->
-  <header class="site-header">
+/* =========================
+   HEADER WRAPPER
+   ========================= */
+.site-header {
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #ffffff;
+}
 
-    <!-- Announcement -->
-    <div class="announcement">
-      Built for speed and accessibility in low-bandwidth regions.
-    </div>
+/* =========================
+   ANNOUNCEMENT BAR
+   ========================= */
+.announcement {
+  background: #020617;
+  text-align: center;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
 
-    <!-- Navigation -->
-    <nav class="navbar">
+/* =========================
+   NAVBAR
+   ========================= */
+.navbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
 
-      <!-- Logo -->
-      <div class="logo">
-        <!-- Desktop logo -->
-        <img
-          src="https://upload.wikimedia.org/wikipedia/tr/archive/5/51/20121213095814%21Sahibinden-2010-200px.jpg"
-          alt="Desktop Logo"
-          class="logo-desktop"
-        />
+/* =========================
+   LOGOS
+   ========================= */
+.logo img {
+  height: 42px;
+  display: block;
+}
 
-        <!-- Mobile & Tablet logo -->
-        <img
-          src="https://scontent.fsaw1-15.fna.fbcdn.net/v/t39.30808-6/359775794_655160279985677_717071514343656728_n.jpg"
-          alt="Mobile Logo"
-          class="logo-mobile"
-        />
-      </div>
+/* Desktop logo visible by default */
+.logo-mobile {
+  display: none;
+}
 
-      <!-- Hamburger button (mobile) -->
-      <button class="menu-toggle" aria-label="Toggle menu">
-        ☰
-      </button>
+/* =========================
+   DESKTOP MENU
+   ========================= */
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
 
-      <!-- Menu -->
-      <ul class="menu">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Mission</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
+.menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
 
-    </nav>
+.menu a:hover {
+  opacity: 1;
+}
 
-    <!-- Hero -->
-    <div class="hero">
-      <h1>Built for Afghanistan</h1>
-      <p>
-        Fast. Simple. Accessible. Designed for real-world connectivity.
-      </p>
-    </div>
+/* =========================
+   HAMBURGER BUTTON
+   ========================= */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
 
-  </header>
+/* =========================
+   HERO SECTION
+   ========================= */
+.hero {
+  max-width: 800px;
+  margin: 60px auto 80px;
+  padding: 0 20px;
+  text-align: center;
+}
 
-  <!-- ================= MAIN ================= -->
-  <main>
+.hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+}
 
-    <section>
-      <h2>Why this site?</h2>
-      <p>
-        This project is built to be fast even on slow internet connections,
-        prioritizing accessibility and clarity over heavy design.
-      </p>
-    </section>
+.hero p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
 
-    <section>
-      <h2>Design philosophy</h2>
-      <p>
-        Minimal layout, system fonts, and lightweight assets ensure the site
-        remains usable across devices, regions, and network conditions.
-      </p>
-    </section>
+/* =========================
+   MAIN CONTENT
+   ========================= */
+main {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
 
-  </main>
+section {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
 
-  <!-- JavaScript -->
-  <script src="script.js"></script>
+section + section {
+  margin-top: 40px;
+}
 
-</body>
-</html>
+section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  max-width: 65ch;
+}
+
+/* =========================
+   MOBILE & TABLET
+   ========================= */
+@media (max-width: 768px) {
+
+  /* Switch logos */
+  .logo-desktop {
+    display: none;
+  }
+
+  .logo-mobile {
+    display: block;
+    height: 38px;
+  }
+
+  /* Show hamburger */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Mobile menu */
+  .menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #020617;
+    flex-direction: column;
+    display: none;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu li {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .menu a {
+    padding: 18px;
+    font-size: 1rem;
+    text-align: center;
+    display: block;
+  }
+
+  /* Hero adjustments */
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero {
+    margin: 40px auto 60px;
+  }
+
+  /* Content spacing */
+  main {
+    margin: 40px auto;
+  }
+
+  section {
+    padding: 20px;
+  }
+}
