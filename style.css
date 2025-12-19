@@ -1,22 +1,5 @@
-/* =========================
-   Reset & Base
-   ========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
+/* ================= HEADER ================= */
 
-body {
-  background: #f4f6f8;
-  color: #1f2933;
-  line-height: 1.7;
-}
-
-/* =========================
-   Header
-   ========================= */
 .site-header {
   background: linear-gradient(135deg, #0f172a, #020617);
   color: #ffffff;
@@ -28,63 +11,53 @@ body {
   text-align: center;
   padding: 8px 16px;
   font-size: 0.85rem;
-  opacity: 0.9;
 }
 
-/* =========================
-   Navbar
-   ========================= */
+/* Navbar */
 .navbar {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 16px 20px;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
 }
 
-/* Logo */
+/* Logos */
 .logo img {
-  height: 40px;
+  height: 42px;
 }
 
-/* Show / hide logos */
 .logo-mobile {
   display: none;
 }
 
-/* Menu */
+/* Desktop menu */
 .menu {
   list-style: none;
   display: flex;
-  gap: 24px;
+  gap: 28px;
 }
 
 .menu a {
   color: #ffffff;
   text-decoration: none;
   font-size: 0.95rem;
-  opacity: 0.85;
 }
 
-.menu a:hover {
-  opacity: 1;
-}
-
-/* Mobile menu button */
+/* Hamburger button */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   color: #ffffff;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   cursor: pointer;
 }
 
-/* =========================
-   Hero
-   ========================= */
+/* ================= HERO ================= */
+
 .hero {
   max-width: 800px;
   margin: 60px auto 80px;
@@ -102,38 +75,8 @@ body {
   opacity: 0.85;
 }
 
-/* =========================
-   Main Content
-   ========================= */
-main {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 0 20px;
-}
+/* ================= MOBILE & TABLET ================= */
 
-section {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-}
-
-section + section {
-  margin-top: 40px;
-}
-
-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-p {
-  max-width: 65ch;
-}
-
-/* =========================
-   Mobile & Tablet
-   ========================= */
 @media (max-width: 768px) {
 
   /* Switch logos */
@@ -143,15 +86,15 @@ p {
 
   .logo-mobile {
     display: block;
-    height: 36px;
+    height: 38px;
   }
 
-  /* Hamburger */
+  /* Show hamburger */
   .menu-toggle {
     display: block;
   }
 
-  /* Mobile menu */
+  /* Mobile menu container */
   .menu {
     position: absolute;
     top: 100%;
@@ -159,8 +102,11 @@ p {
     right: 0;
     background: #020617;
     flex-direction: column;
-    gap: 0;
     display: none;
+  }
+
+  .menu.open {
+    display: flex;
   }
 
   .menu li {
@@ -168,23 +114,13 @@ p {
   }
 
   .menu a {
-    padding: 16px;
+    padding: 18px;
+    font-size: 1rem;
     display: block;
-  }
-
-  .menu.open {
-    display: flex;
+    text-align: center;
   }
 
   .hero h1 {
     font-size: 2rem;
-  }
-
-  main {
-    margin: 40px auto;
-  }
-
-  section {
-    padding: 20px;
   }
 }
