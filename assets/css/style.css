@@ -11,7 +11,7 @@
   --radius: 16px;
   --radius-lg: 24px;
   --glass-border: rgba(255, 255, 255, 0.1);
-  --text: #f0f6ff;
+  --text: #00318A;
   --danger: #ff6b6b;
   --success: #4dffb8;
   
@@ -280,6 +280,19 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
 }
 
+.btn.accent {
+  background: transparent;
+  border: 2px solid var(--glass-border);
+  color: var(--accent);
+  backdrop-filter: blur(10px);
+}
+
+.btn.accent:hover {
+  border-color: var(--accent);
+  box-shadow: var(--neon-glow);
+  transform: translateY(-2px);
+}
+
 .hero-cta {
   display: flex;
   gap: 1rem;
@@ -353,6 +366,7 @@ h1, h2, h3, h4 {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  position-area: right;
 }
 
 .card img {
