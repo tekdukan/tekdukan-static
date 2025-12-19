@@ -1,7 +1,0 @@
-[
-  { "turkish": "elma", "english": "apple", "grammar": "noun" },
-  { "turkish": "araba", "english": "car", "grammar": "noun" },
-  { "turkish": "okul", "english": "school", "grammar": "noun" },
-  { "turkish": "kitap", "english": "book", "grammar": "noun" },
-  { "turkish": "Ben elma yiyorum", "english": "I am eating an apple", "grammar": "sentence" }
-]
