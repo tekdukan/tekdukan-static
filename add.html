@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Add listing — Bazaar-e Ghar & Motar</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img src="assets/img/logo.svg" alt="Bazaar-e Ghar & Motar" />
+      <span>Bazaar-e Ghar & Motar</span>
+    </a>
+    <nav class="main-nav">
+      <a href="homes.html">Homes</a>
+      <a href="cars.html">Cars</a>
+      <a class="cta active" href="add.html">Add listing</a>
+      <button id="langToggle" class="ghost">Dari/Pashto</button>
+      <button id="themeToggle" class="ghost">Theme</button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Add your listing</h1>
+    <p class="sub">Post a home or car. Your listing saves in your browser and shows instantly.</p>
+
+    <form id="addForm" class="form">
+      <div class="row">
+        <label>
+          <span>Category</span>
+          <select name="category" required>
+            <option value="home">Home</option>
+            <option value="car">Car</option>
+          </select>
+        </label>
+        <label>
+          <span>City</span>
+          <select name="city" required>
+            <option>Kabul</option><option>Herat</option><option>Mazar</option><option>Kandahar</option><option>Jalalabad</option>
+          </select>
+        </label>
+        <label>
+          <span>Title</span>
+          <input type="text" name="title" placeholder="Cozy 3BR in Karte Se" required />
+        </label>
+        <label class="grow">
+          <span>Description</span>
+          <textarea name="description" rows="4" placeholder="Key features, condition, neighborhood..." required></textarea>
+        </label>
+      </div>
+
+      <div class="row">
+        <label>
+          <span>Price (USD/Af)</span>
+          <input type="number" name="price" min="0" required />
+        </label>
+        <label>
+          <span>Contact phone</span>
+          <input type="tel" name="phone" placeholder="+93…" required />
+        </label>
+        <label class="grow">
+          <span>WhatsApp (optional)</span>
+          <input type="tel" name="whatsapp" placeholder="+93…" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label class="grow">
+          <span>Image URL</span>
+          <input type="url" name="image" placeholder="https://…" />
+        </label>
+        <label>
+          <span>Featured</span>
+          <select name="featured">
+            <option value="false">No</option>
+            <option value="true">Yes</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="row" id="homeFields">
+        <label>
+          <span>Property type</span>
+          <select name="propertyType">
+            <option>Apartment</option><option>House</option><option>Land</option>
+          </select>
+        </label>
+        <label>
+          <span>Bedrooms</span>
+          <input type="number" name="bedrooms" min="0" />
+        </label>
+        <label>
+          <span>Bathrooms</span>
+          <input type="number" name="bathrooms" min="0" />
+        </label>
+      </div>
+
+      <div class="row" id="carFields" style="display:none">
+        <label>
+          <span>Make</span>
+          <input type="text" name="make" placeholder="Toyota" />
+        </label>
+        <label>
+          <span>Model</span>
+          <input type="text" name="model" placeholder="Corolla" />
+        </label>
+        <label>
+          <span>Year</span>
+          <input type="number" name="year" min="1970" max="2026" />
+        </label>
+      </div>
+
+      <div class="actions">
+        <button class="btn accent" type="submit">Post listing</button>
+        <a class="btn outline" href="index.html">Cancel</a>
+      </div>
+    </form>
+    <div id="addSuccess" class="notice success" style="display:none">Listing added! View it on the relevant page.</div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="meta">© 2025 Bazaar-e Ghar & Motar</p>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    window.renderAddPage();
+  </script>
+</body>
+</html>
