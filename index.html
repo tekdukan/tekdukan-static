@@ -1,65 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Bazaar-e Ghar & Motar — Afghanistan Marketplace</title>
+  <title>Bazaar-e Ghar & Motar</title>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <meta name="description" content="Buy & sell homes and cars in Afghanistan. Simple, trusted, community-first." />
+  <meta name="description" content="Buy & sell homes and cars in Afghanistan" />
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="index.html">
-      <img src="https://raw.githubusercontent.com/tekdukan/tekdukan-static/66d4258dcea1d072271a0af19e51d4990881b084/assets/css/logo.svg" alt="Bazaar-e Ghar & Motar" />
-      <span></span>
+      <img src="assets/img/logo.svg" alt="Bazaar-e Ghar & Motar" />
+      <div class="brand-text">
+        <strong>Bazaar-e Ghar & Motar</strong>
+        <small>Homes & Cars • Afghanistan</small>
+      </div>
     </a>
-    <nav class="main-nav">
-      <a href="homes.html">Homes</a>
-      <a href="cars.html">Cars</a>
-      <a class="cta" href="add.html">Add listing</a>
-      <button id="langToggle" class="ghost">Dari/Pashto</button>
-      <button id="themeToggle" class="ghost">Theme</button>
-    </nav>
+
+    <div class="header-actions">
+      <nav class="main-nav">
+        <a href="homes.html">Homes</a>
+        <a href="cars.html">Cars</a>
+        <a href="add.html" class="cta">Add</a>
+      </nav>
+      <div class="user-area" id="headerUserArea"></div>
+      <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">🌓</button>
+    </div>
   </header>
 
   <main class="hero">
-    <div class="hero-content">
-      <h1>Buy & sell homes and cars in Afghanistan</h1>
-      <p>Local, simple, and trustworthy. Find your next home or car in Kabul, Herat, Mazar, Kandahar, and beyond.</p>
-      <div class="hero-actions">
-        <a class="btn" href="homes.html">Browse homes</a>
-        <a class="btn outline" href="cars.html">Browse cars</a>
-        <a class="btn accent" href="add.html">Add your listing</a>
+    <div class="hero-inner">
+      <h1>Find your next home or car in Afghanistan</h1>
+      <p class="lead">Local listings, secure contacts, mobile-first experience for buyers and sellers.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="homes.html">Browse homes</a>
+        <a class="btn ghost" href="cars.html">Browse cars</a>
+        <a class="btn accent" href="add.html">Post listing</a>
       </div>
     </div>
   </main>
 
-    <section class="featured">
-      <h2>Featured listings</h2>
-      <div id="featuredGrid" class="grid"></div>
-    </section>
+  <section class="featured">
+    <h2>Featured right now</h2>
+    <div id="featuredGrid" class="grid"></div>
+  </section>
 
   <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <h4>About</h4>
-        <p>Community marketplace built for Afghanistan. Clean design, strong trust signals, and local-language support.</p>
-      </div>
-      <div>
-        <h4>Cities</h4>
-        <ul class="inline">
-          <li>Kabul</li><li>Herat</li><li>Mazar</li><li>Kandahar</li><li>Jalalabad</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Get in touch</h4>
-        <p>Questions or partnerships? Email hello@bazaar.af</p>
-      </div>
+    <div class="footer-left">
+      <small>© <span id="year"></span> Bazaar-e Ghar & Motar</small>
     </div>
-    <p class="meta">© 2025 Bazaar-e Ghar & Motar</p>
+    <div class="footer-right">
+      <small>Built for Afghanistan • Mobile-first</small>
+    </div>
   </footer>
 
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  <script>window.initIndex && window.initIndex();</script>
 </body>
 </html>
