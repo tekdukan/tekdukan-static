@@ -994,10 +994,7 @@
           showToast('Password must be at least 6 characters', 'error');
           return;
         }
-        if (password !== passwordConfirm) {
-          showToast('Passwords do not match', 'error');
-          return;
-        }
+
       }
 
       // Loading state
